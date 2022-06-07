@@ -8,8 +8,7 @@
 </head>
 <body>
     <!-- Insert this line in your HTML. -->
-<script src="https://embed.runkit.com"
-data-element-id="my-element"></script>
+<script async src="https://embed.runkit.com" data-element-id="my-element"></script>
 
 <!-- anywhere else on your page -->
 <div id="my-element">
@@ -20,31 +19,32 @@ const Routes = Stack.router();
 const Jwt = Stack.jwt;
 
 Routes.get('/', (req, res) => {
-console.log(Jwt.sign('a', 'b'));
-Jwt.verify("eyJhbGciOiJIUzI1NiJ9.YQ.PrSVmEzsOLiTgzWfslar1L11W5nJXm8Vj0OFoGYUIjs", 'b', function(err, decoded) {
-console.log(decoded) // bar
-});
-return res.status(Stack.status.OK).send({
-message: 'hello world!'
-});
+    console.log(Jwt.sign('a', 'b')); // return eyJhbGciOiJIUzI1NiJ9.YQ.PrSVmEzsOLiTgzWfslar1L11W5nJXm8Vj0OFoGYUIjs
+    const token = eyJhbGciOiJIUzI1NiJ9.YQ.PrSVmEzsOLiTgzWfslar1L11W5nJXm8Vj0OFoGYUIjs;
+    Jwt.verify(token, 'b', function(err, decoded) {
+        console.log(decoded) // return a
+    });
+   return res.status(Stack.status.OK).send({
+        message: 'hello world!'
+    });
 });
 
 const stackType = 'default';
 const stackData =  [
-{
-AppType: 'apis',
-AppPort: 8234,
-AppRoutes: Routes,
-AppPath: false,
-
-},
+    {
+        AppType: 'apis',
+        AppPort: 8234,
+        AppRoutes: Routes,
+        AppPath: false,
+ 
+    },
 ]
-
+ 
 Stack.initializeApp({
-type: stackType, secure: false,
-servers: stackData
+    type: stackType, secure: false,
+    servers: stackData
 });
-
+  
 </div>
 </body>
 </html>
