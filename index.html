@@ -13,6 +13,7 @@
 <!-- anywhere else on your page -->
 <div id="my-element">
 
+`
 require("@google-cloud/firestore");
 const Stack = require("@snipkode/stack");
 const Routes = Stack.router();
@@ -43,7 +44,8 @@ const stackData =  [
 Stack.initializeApp({
     type: stackType, secure: false,
     servers: stackData
-});
+});    
+`
   
 </div>
 </body>
